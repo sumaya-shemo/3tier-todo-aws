@@ -6,8 +6,6 @@ Nginx is the **only public entry point**. The API and database run in private su
 
 ## 1. Architecture
 
-![Architecture Diagram Here](docs/architecture.png)
-
 ```
                 Internet
                    │
