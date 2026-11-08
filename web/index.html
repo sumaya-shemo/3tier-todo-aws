@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do App</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 560px; margin: 40px auto; padding: 0 16px; }
+    form { display: flex; gap: 8px; margin-bottom: 16px; }
+    input[type=text] { flex: 1; padding: 8px; }
+    li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid #ddd; list-style: none; }
+    li span { flex: 1; }
+    li.done span { text-decoration: line-through; color: #888; }
+    ul { padding: 0; }
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <form id="form">
+    <input type="text" id="title" placeholder="New task..." required>
+    <button>Add</button>
+  </form>
+  <ul id="list"></ul>
+
+<script>
+const api = '/api/tasks';
+const list = document.getElementById('list');
+
+async function load() {
+  const tasks = await (await fetch(api)).json();
+  list.innerHTML = '';
+  tasks.forEach(t => {
+    const li = document.createElement('li');
+    if (t.completed) li.className = 'done';
+
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.checked = !!t.completed;
+    cb.onchange = () => update(t.id, { completed: cb.checked ? 1 : 0 });
+
+    const span = document.createElement('span');
+    span.textContent = t.title;
+
+    const edit = document.createElement('button');
+    edit.textContent = 'Edit';
+    edit.onclick = () => {
+      const title = prompt('Edit task', t.title);
+      if (title) update(t.id, { title });
+    };
+
+    const del = document.createElement('button');
+    del.textContent = 'Delete';
+    del.onclick = async () => { await fetch(`${api}/${t.id}`, { method: 'DELETE' }); load(); };
+
+    li.append(cb, span, edit, del);
+    list.appendChild(li);
+  });
+}
+
+async function update(id, body) {
+  await fetch(`${api}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  load();
+}
+
+document.getElementById('form').onsubmit = async e => {
+  e.preventDefault();
+  const input = document.getElementById('title');
+  await fetch(api, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: input.value })
+  });
+  input.value = '';
+  load();
+};
+
+load();
+</script>
+</body>
+</html>
