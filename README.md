@@ -489,7 +489,7 @@ Executing: /usr/lib/systemd/systemd-sysv-install enable nginx
 ubuntu@ip-10-0-1-48:~$ history
     1  sudo apt update
     2  sudo apt upgrade
-    3  git clone https://github.com/sumaya-shemo/baston-server.git
+    3  copy todo-key.pem
     4  ls
     5  baston-server
     6  cd baston-server
