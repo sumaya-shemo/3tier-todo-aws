@@ -692,34 +692,6 @@ ubuntu@ip-10-0-3-84:~$ history
 
 
 ## Server App-1 History
-ubuntu@ip-10-0-1-48:~/key$ ssh -i "todo-key.pem" ubuntu@10.0.2.44
-Welcome to Ubuntu 26.04.1 LTS (GNU/Linux 7.0.0-1016-aws x86_64)
-
- * Documentation:  https://docs.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/pro
-
- System information as of Sun Nov  8 10:05:48 UTC 2026
-
-  System load:  0.0               Temperature:           -273.1 C
-  Usage of /:   43.8% of 6.61GB   Processes:             115
-  Memory usage: 28%               Users logged in:       0
-  Swap usage:   0%                IPv4 address for ens5: 10.0.2.44
-
- * Ubuntu Pro delivers the most comprehensive open source security and
-   compliance features.
-
-   https://ubuntu.com/aws/pro
-
-Expanded Security Maintenance for Applications is not enabled.
-
-35 updates can be applied immediately.
-To see these additional updates run: apt list --upgradable
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
-
 Last login: Sun Nov  8 06:17:30 2026 from 10.0.1.48
 ubuntu@ip-10-0-2-44:~$ history
     1  sudo apt update
@@ -823,7 +795,7 @@ ubuntu@ip-10-0-2-44:~$ history
    99  history
 ## Server App-2 History
 ubuntu@ip-10-0-2-64:~$ curl localhost:3000/api/tasks
-{"server":"ip-10-0-2-64","tasks":[{"id":8,"title":"Deploy 3-tier app","done":0,"created_at":"2026-11-07T18:41:54.000Z"},{"id":7,"title":"Add Route Table","done":0,"created_at":"2026-11-07T18:41:54.000Z"},{"id":6,"title":"Deploy 3-tier app","done":0,"created_at":"2026-11-07T18:34:38.000Z"},{"id":5,"title":"Learn VPC","done":0,"created_at":"2026-11-07T18:34:38.000Z"}]}ubuntu@ip-10-0-2-64:~$ history
+ubuntu@ip-10-0-2-64:~$ history
     1  clear
     2  sudo apt update
     3  ping -c 3 google.com
