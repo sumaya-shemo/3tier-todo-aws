@@ -1,0 +1,14 @@
+[Unit]
+Description=Todo API
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/todo-api
+EnvironmentFile=/etc/todo-api.env
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
